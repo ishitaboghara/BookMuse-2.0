@@ -3,17 +3,19 @@ BookMuse 2.0 - Configuration
 """
 
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
+# Load .env only for local development
 load_dotenv()
 
-# API Keys
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+# Read from Streamlit Secrets first, otherwise from .env
+GROQ_API_KEY = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", ""))
+OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY", os.getenv("OPENAI_API_KEY", ""))
 
 if not GROQ_API_KEY:
-    print("⚠️ WARNING: GROQ_API_KEY not found in .env")
-
+    print("⚠️ WARNING: GROQ_API_KEY not found")
+    
 # LLM Config
 LLM_MODEL = "llama-3.3-70b-versatile"
 LLM_TEMP = 0.7
