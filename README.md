@@ -96,6 +96,9 @@ streamlit run app.py
 
 6. **Open in browser**
 
+Live Demo:
+https://bookmuse-2.streamlit.app
+
 ## 👩‍💻 Author
 
 **Ishita Boghara**
